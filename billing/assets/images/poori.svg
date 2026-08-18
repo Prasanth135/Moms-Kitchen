@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#fef3e2"/>
+  <circle cx="100" cy="85" r="50" fill="#ffd700" stroke="#c45c26" stroke-width="2"/>
+  <circle cx="100" cy="85" r="35" fill="#fff8dc"/>
+  <circle cx="100" cy="85" r="20" fill="#ffd700"/>
+  <text x="100" y="165" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="18" font-weight="600" fill="#5c4a3a">Poori</text>
+</svg>

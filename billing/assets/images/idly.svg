@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#f5e6d3"/>
+  <circle cx="100" cy="90" r="45" fill="#fff8f0" stroke="#c45c26" stroke-width="3"/>
+  <circle cx="85" cy="80" r="8" fill="#e8ddd0"/>
+  <circle cx="100" cy="75" r="8" fill="#e8ddd0"/>
+  <circle cx="115" cy="80" r="8" fill="#e8ddd0"/>
+  <text x="100" y="165" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="18" font-weight="600" fill="#5c4a3a">Idly</text>
+</svg>

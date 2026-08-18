@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#f8f4ef"/>
+  <rect x="70" y="65" width="60" height="65" rx="5" fill="#d4c4a8" stroke="#8b7355" stroke-width="2"/>
+  <rect x="75" y="55" width="50" height="12" rx="3" fill="#a08060"/>
+  <ellipse cx="100" cy="95" rx="18" ry="7" fill="#8b6914"/>
+  <text x="100" y="165" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="18" font-weight="600" fill="#5c4a3a">Tea</text>
+</svg>

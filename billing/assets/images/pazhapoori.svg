@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#fef9e7"/>
+  <ellipse cx="100" cy="90" rx="40" ry="50" fill="#ffd700" stroke="#c45c26" stroke-width="2"/>
+  <ellipse cx="100" cy="88" rx="30" ry="38" fill="#ffec8b"/>
+  <path d="M85 75 Q100 65 115 75" fill="none" stroke="#8b4513" stroke-width="2"/>
+  <text x="100" y="165" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="16" font-weight="600" fill="#5c4a3a">Pazhapoori</text>
+</svg>

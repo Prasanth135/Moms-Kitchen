@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Billing</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <h1 class="logo">Restaurant Billing</h1>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="billing-tab" type="button">Billing</button>
+      <button class="tab-btn" data-tab="manage-tab" type="button">Manage Menu</button>
+      <button class="tab-btn" data-tab="reports-tab" type="button">Reports</button>
+    </nav>
+  </header>
+
+  <main class="main">
+    <!-- Billing Tab -->
+    <section id="billing-tab" class="tab-panel active">
+      <div class="billing-layout">
+        <div class="menu-section">
+          <h2 class="section-title">Menu</h2>
+          <div id="menu-grid" class="menu-grid"></div>
+        </div>
+
+        <aside class="cart-section">
+          <h2 class="section-title">Cart</h2>
+          <div id="cart-items" class="cart-items"></div>
+          <div class="cart-footer">
+            <div class="cart-total-row">
+              <span>Total</span>
+              <span id="cart-total" class="cart-total">₹0</span>
+            </div>
+            <div class="cart-actions">
+              <button id="clear-cart-btn" class="btn btn-secondary" type="button">Clear Cart</button>
+              <button id="print-bill-btn" class="btn btn-secondary" type="button" disabled>Print Bill</button>
+              <button id="pay-now-btn" class="btn btn-primary" type="button" disabled>Pay Now</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Manage Menu Tab -->
+    <section id="manage-tab" class="tab-panel">
+      <div class="manage-header">
+        <h2 class="section-title">Manage Menu</h2>
+        <button id="add-item-btn" class="btn btn-primary" type="button">+ Add Item</button>
+      </div>
+
+      <div id="menu-form" class="menu-form hidden">
+        <h3 id="menu-form-title">Add Menu Item</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="item-name">Name</label>
+            <input type="text" id="item-name" placeholder="Item name" required>
+          </div>
+          <div class="form-group">
+            <label for="item-price">Price (₹)</label>
+            <input type="number" id="item-price" min="0" step="1" placeholder="0" required>
+          </div>
+          <div class="form-group">
+            <label for="item-image-url">Image URL</label>
+            <input type="url" id="item-image-url" placeholder="https://...">
+          </div>
+          <div class="form-group">
+            <label for="item-image-file">Or upload image</label>
+            <input type="file" id="item-image-file" accept="image/*">
+          </div>
+        </div>
+        <div class="image-preview-wrap">
+          <img id="image-preview" src="assets/images/placeholder.jpg" alt="Preview" class="image-preview">
+        </div>
+        <div class="form-actions">
+          <button id="save-item-btn" class="btn btn-primary" type="button">Save</button>
+          <button id="cancel-form-btn" class="btn btn-secondary" type="button">Cancel</button>
+        </div>
+      </div>
+
+      <table class="menu-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="menu-table-body"></tbody>
+      </table>
+
+      <div class="settings-section">
+        <h3 class="section-title">Payment Settings</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="restaurant-name">Restaurant Name</label>
+            <input type="text" id="restaurant-name" placeholder="Restaurant">
+          </div>
+          <div class="form-group">
+            <label for="upi-vpa">UPI VPA</label>
+            <input type="text" id="upi-vpa" placeholder="yourshop@ybl or 9876543210@paytm">
+            <p class="form-help">Use your business UPI ID from PhonePe, Paytm, or Google Pay. Payments go to the bank account linked in that app — not through this website.</p>
+          </div>
+        </div>
+        <p id="config-save-status" class="config-save-status hidden" role="status"></p>
+        <button id="save-config-btn" class="btn btn-primary" type="button">Save Settings</button>
+      </div>
+    </section>
+
+    <!-- Reports Tab -->
+    <section id="reports-tab" class="tab-panel">
+      <div class="reports-header">
+        <h2 class="section-title">Monthly Sales Report</h2>
+        <input type="month" id="report-month" class="month-picker">
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">Total Revenue</span>
+          <span id="stat-revenue" class="stat-value">₹0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Orders</span>
+          <span id="stat-orders" class="stat-value">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Top Item</span>
+          <span id="stat-top-item" class="stat-value">—</span>
+        </div>
+      </div>
+
+      <table class="sales-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Items</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="sales-table-body"></tbody>
+      </table>
+      <p id="sales-empty" class="empty-state hidden">No sales recorded for this month.</p>
+    </section>
+  </main>
+
+  <!-- Print Receipt (hidden on screen, shown when printing) -->
+  <div id="print-receipt" class="print-receipt">
+    <h2 id="receipt-restaurant-name">Restaurant</h2>
+    <p id="receipt-date" class="receipt-date"></p>
+    <div class="receipt-divider"></div>
+    <div id="receipt-items" class="receipt-items"></div>
+    <div class="receipt-divider"></div>
+    <div class="receipt-total-row">
+      <span>Total</span>
+      <span id="receipt-total">₹0</span>
+    </div>
+    <p class="receipt-thanks">Thank you!</p>
+  </div>
+
+  <!-- Pay Now Modal -->
+  <div id="pay-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Pay Now</h2>
+      <p class="modal-restaurant" id="modal-restaurant"></p>
+      <div id="modal-items" class="modal-items"></div>
+      <div class="modal-total-row">
+        <span>Total</span>
+        <span id="modal-total"></span>
+      </div>
+      <div class="qr-section">
+        <p>Scan to pay via UPI</p>
+        <p class="modal-vpa" id="modal-vpa"></p>
+        <div id="qr-code" class="qr-code"></div>
+      </div>
+      <div class="modal-actions">
+        <button id="confirm-payment-btn" class="btn btn-primary" type="button">Confirm Payment</button>
+        <button id="close-modal-btn" class="btn btn-secondary" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/billing.js"></script>
+  <script src="js/sales.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
